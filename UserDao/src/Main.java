@@ -1,3 +1,4 @@
+import spring.user.dao.DUserDao;
 import spring.user.dao.UserDao;
 import spring.user.domain.User;
 
@@ -6,11 +7,11 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        UserDao dao = new UserDao();
+        DUserDao dao = new DUserDao();
         User user = new User();
-        user.setId("whiteship");
-        user.setName("안건우");
-        user.setPassword("1414");
+        user.setId("4885");
+        user.setName("HaJungWoo");
+        user.setPassword("psycho");
 
         dao.add(user);
 
