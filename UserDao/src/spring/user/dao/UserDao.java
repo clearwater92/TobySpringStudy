@@ -5,10 +5,13 @@ import spring.user.domain.User;
 import java.sql.*;
 
 public class UserDao {
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "5414");
+    private SimpleConnectionMaker simpleConnectionMaker;
 
+    public UserDao() {
+        simpleConnectionMaker = new SimpleConnectionMaker();
+    }
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        Connection c = simpleConnectionMaker.makeNewConnection();
         PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -20,9 +23,7 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "5414");
-
+        Connection c = simpleConnectionMaker.makeNewConnection();
         PreparedStatement ps = c.prepareStatement("select * from users where id = ?");
         ps.setString(1, id);
 
