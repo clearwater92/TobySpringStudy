@@ -15,9 +15,9 @@ public class UserDaoTest {
         //UserDao dao = new UserDao(connectionMaker);
 
         User user = new User();
-        user.setId("kika");
-        user.setName("soccer");
-        user.setPassword("korean ball");
+        user.setId("kingkong");
+        user.setName("hero");
+        user.setPassword("strong");
 
         dao.add(user);
 
